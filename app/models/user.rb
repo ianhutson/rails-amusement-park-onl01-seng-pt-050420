@@ -1,17 +1,11 @@
-  
 class User < ActiveRecord::Base
-    has_many :rides
-    has_many :attractions, through: :rides
-
     has_secure_password
-
+    has_many :rides
+    has_many :attractions, :through => :rides
+  
     def mood
-        unless self.happiness == nil || self.nausea == nil
-            if self.happiness > self.nausea
-                "happy"
-            else
-                "sad"
-            end
-        end
+      unless admin
+        happiness > nausea ? "happy" : "sad"
+      end
     end
-end
+  end

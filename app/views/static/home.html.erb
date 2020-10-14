@@ -1,15 +1,20 @@
-<div class="theme-showcase" role="main">
 
-  <div class="left-pic">
-    <img src="http://www.washingtonpost.com/wp-srv/special/health/why-roller-coasters-make-us-scream/images/rollercoasterBackground.jpg" width="550" height="325">
-  </div>
+  
+<%= form_tag('/session', method: :post) do %>
 
-  <div class="right-info">
-    <h1>Welcome to the Amusement Park!</h1>
-    <div class="center">
-      <%= link_to "Sign in", signin_path %>
-      <%= link_to "Sign up", new_user_path %>
+    <div class="form-group">
+      <%= label_tag(:name, "Your name:") %>
+  
+      <%= collection_select(:user, :name, User.all, :name, :name, prompt: "Please select your username from this dropdown") %>
     </div>
-  </div>
-
-</div>
+  
+    <div class="form-group">
+      <%= label_tag(:user_password, "Your password:") %>
+      <%= password_field_tag(:user_password, nil, class: "form-control") %>
+    </div>
+  
+    <div class="actions">
+      <%= submit_tag("Sign In") %>
+    </div>
+  
+  <% end %> 
